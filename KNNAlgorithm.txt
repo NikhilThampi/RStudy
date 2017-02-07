@@ -1,0 +1,27 @@
+data(iris)
+str(iris)
+table(iris$Species)
+head(iris)
+iris
+set.seed(9850)
+gp <- runif(nrow(iris))
+gp
+iris <- iris[order(gp),]
+str(iris)
+head(iris)
+summary(iris[,c(1,2,3,4)])
+normalize <- function(x) { return((x-min(x))/(max(x) - min(x))) }
+normalize(c(1,2,3,4,5))
+iris_n <- as.data.frame(lapply(iris[,c(1,2,3,4)],normalize))
+str(iris_n)
+summary(iris_n)
+iris_train <- iris_n[1:139,]
+iris_train <- iris_n[1:129,]
+iris_test <- iris_n[149:150,]
+iris_train_target <- iris[1:129,5]
+iris_test_target <- iris[149:150,5]
+require(class)
+sqrt(150)
+m1 <- knn(train=iris_train,test=iris_test,cl=iris_train_target,k=13)
+m1
+table(iris_test_target,m1)
