@@ -1,0 +1,15 @@
+#install.packages("C50")
+require(C50)
+set.seed(9850)
+gp <- runif(nrow(iris))
+gp
+irisr <- iris[order(gp),]
+irisr
+m1 <- C5.0(irisr[1:100,-5],irisr[1:100,5])
+summary(m1)
+p1 <- predict(m1,irisr[101:150,-5])
+p1
+table(irisr[101:150,5],predicted=p1)
+plot(m1)
+
+
